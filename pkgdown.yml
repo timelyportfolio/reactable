@@ -1,0 +1,15 @@
+pandoc: '2.2'
+pkgdown: 1.4.1
+pkgdown_sha: ~
+articles:
+  100k-rows: 100k-rows.html
+  conditional-styling: conditional-styling.html
+  cookbook: cookbook/cookbook.html
+  cran-packages: cran-packages/cran-packages.html
+  custom-rendering: custom-rendering.html
+  examples: examples.html
+  nba-box-score: nba-box-score/nba-box-score.html
+  shiny-demo: shiny-demo.html
+  twitter-followers: twitter-followers/twitter-followers.html
+  womens-world-cup: womens-world-cup/womens-world-cup.html
+
