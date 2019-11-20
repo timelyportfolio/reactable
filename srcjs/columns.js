@@ -47,20 +47,22 @@ export function buildColumnDefs(columns, groups, tableProps = {}) {
     } else {
       col.createMatcher = createSubstringMatcher
     }
-    col.filterMethod = (filter, rows) => {
-      const id = filter.id
-      const match = col.createMatcher(filter.value)
-      return rows.filter(row => {
-        const value = row[id]
-        if (value === undefined) {
-          return true
-        }
-        // Don't filter on aggregated cells
-        if (row._subRows) {
-          return true
-        }
-        return match(value)
-      })
+    if(!col.hasOwnProperty("filterMethod")) {
+      col.filterMethod = (filter, rows) => {
+        const id = filter.id
+        const match = col.createMatcher(filter.value)
+        return rows.filter(row => {
+          const value = row[id]
+          if (value === undefined) {
+            return true
+          }
+          // Don't filter on aggregated cells
+          if (row._subRows) {
+            return true
+          }
+          return match(value)
+        })
+      }
     }
 
     if (col.type === 'numeric') {
