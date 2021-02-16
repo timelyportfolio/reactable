@@ -3,6 +3,7 @@ import { ReactTableDefaults } from '@glin/react-table'
 import { hydrate } from 'reactR'
 
 import WidgetContainer from './WidgetContainer'
+import WidgetContainerTest from './WidgetContainerTest'
 import { aggregators, isNA, normalizeNumber } from './aggregators'
 import { classNames, escapeRegExp, getFirstDefined } from './utils'
 
@@ -92,7 +93,7 @@ export function buildColumnDefs(columns, groups, tableProps = {}) {
 
       if (col.cell) {
         if (typeof col.cell === 'function') {
-          value = col.cell({ ...cellInfo, value })
+          value = col.cell({ ...cellInfo, value, hydrate, WidgetContainerTest })
         }
         // Make sure we don't render aggregated cells for R renderers
         if (col.cell instanceof Array && !cellInfo.aggregated) {
