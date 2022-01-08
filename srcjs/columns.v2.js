@@ -78,10 +78,15 @@ export function buildColumnDefs(columns, groups, tableProps = {}) {
     // Default column filters
     //  - numeric columns: string starts with
     //  - other columns: case-insensitive substring
-    if (col.type === 'numeric') {
-      col.createMatcher = createStartsWithMatcher
+    if(col.hasOwnProperty('filterFun')) {
+      window.console.log('... adding custom function for filtering ...')
+      col.createMatcher = col.filterFun
     } else {
-      col.createMatcher = createSubstringMatcher
+      if (col.type === 'numeric') {
+        col.createMatcher = createStartsWithMatcher
+      } else {
+        col.createMatcher = createSubstringMatcher
+      }
     }
     col.filter = (rows, id, value) => {
       if (!value) {
